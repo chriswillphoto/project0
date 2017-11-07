@@ -1,9 +1,7 @@
+let gameboard = ["s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9"];
 let remaining = ["s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9"];
 
 let xTurn = true;
-let xWin = false;
-let oWin = false;
-let draw = false;
 let turns = 0;
 let player1Score = 0;
 let player2Score = 0;
@@ -21,57 +19,20 @@ let fatality = new Howl({
 
 
 const drawCheck = function(){
-  if(turns > 8 && !oWin && !xWin){
+  if(turns > 8 && (!winChecker("x")) && (!winChecker("o"))) {
     return true;
   }else{
     return false;
   };
 };
 
-const winChecker = function(){
-  if( $("#s1").hasClass("x") && $("#s2").hasClass("x") && $("#s3").hasClass("x") ){
-    xWin = true;
-  }else if ( $("#s4").hasClass("x") && $("#s5").hasClass("x") && $("#s6").hasClass("x") ){
-    xWin = true;
-  }else if ( $("#s7").hasClass("x") && $("#s8").hasClass("x") && $("#s9").hasClass("x") ){
-    xWin = true;
-  }else if ( $("#s1").hasClass("x") && $("#s5").hasClass("x") && $("#s9").hasClass("x") ){
-    xWin = true;
-  }else if ( $("#s3").hasClass("x") && $("#s5").hasClass("x") && $("#s7").hasClass("x") ){
-    xWin = true;
-  }else if ( $("#s1").hasClass("x") && $("#s4").hasClass("x") && $("#s7").hasClass("x") ){
-    xWin = true;
-  }else if ( $("#s2").hasClass("x") && $("#s5").hasClass("x") && $("#s8").hasClass("x") ){
-    xWin = true;
-  }else if ( $("#s3").hasClass("x") && $("#s6").hasClass("x") && $("#s9").hasClass("x") ){
-    xWin = true;    // x win
-  }else if ( $("#s1").hasClass("o") && $("#s2").hasClass("o") && $("#s3").hasClass("o") ){
-    oWin = true;
-  }else if ( $("#s4").hasClass("o") && $("#s5").hasClass("o") && $("#s6").hasClass("o") ){
-    oWin = true;
-  }else if ( $("#s7").hasClass("o") && $("#s8").hasClass("o") && $("#s9").hasClass("o") ){
-    oWin = true;
-  }else if ( $("#s1").hasClass("o") && $("#s5").hasClass("o") && $("#s9").hasClass("o") ){
-    oWin = true;
-  }else if ( $("#s3").hasClass("o") && $("#s5").hasClass("o") && $("#s7").hasClass("o") ){
-    oWin = true;
-  }else if ( $("#s1").hasClass("o") && $("#s4").hasClass("o") && $("#s7").hasClass("o") ){
-    oWin = true;
-  }else if ( $("#s2").hasClass("o") && $("#s5").hasClass("o") && $("#s8").hasClass("o") ){
-    oWin = true;
-  }else if ( $("#s3").hasClass("o") && $("#s6").hasClass("o") && $("#s9").hasClass("o") ){
-    oWin = true;    // o win
-  }else if(drawCheck() === true){
-    draw = true;
-  };
-
-  if(xWin){
+const winbox = function (){
+  if(winChecker("x")){
     $(".message").text("X Wins");
     player1Score += 1;
-    // $(".reset").show();
     $("#1score").text(player1Score);
     winner("PLAYER 1")
-  }else if(oWin){
+  }else if(winChecker("o")){
     $(".message").text("O Wins");
     player2Score += 1;
     $("#2score").text(player2Score);
@@ -79,21 +40,37 @@ const winChecker = function(){
       winner("COMPUTER")
     }else{
       winner("PLAYER 2")
-    }
-  }else if(draw){
+      }
+  }else if(drawCheck()){
     $(".message").text("DRAW");
-    winner("NOBODY")
+    winner("NOBODY");
+    };
+  }
+
+const winChecker = function(player){
+
+  if( $("#s1").hasClass(player) && $("#s2").hasClass(player) && $("#s3").hasClass(player)  ||
+      $("#s4").hasClass(player) && $("#s5").hasClass(player) && $("#s6").hasClass(player)  ||
+      $("#s7").hasClass(player) && $("#s8").hasClass(player) && $("#s9").hasClass(player)  ||
+      $("#s1").hasClass(player) && $("#s5").hasClass(player) && $("#s9").hasClass(player)  ||
+      $("#s3").hasClass(player) && $("#s5").hasClass(player) && $("#s7").hasClass(player)  ||
+      $("#s1").hasClass(player) && $("#s4").hasClass(player) && $("#s7").hasClass(player)  ||
+      $("#s2").hasClass(player) && $("#s5").hasClass(player) && $("#s8").hasClass(player)  ||
+      $("#s3").hasClass(player) && $("#s6").hasClass(player) && $("#s9").hasClass(player) ) {
+      return true
+    }else{
+      return false
+    }
   };
-};
+
+
+
 
 
 const reset = function(){
   $(".x").removeClass("x")
   $(".o").removeClass("o")
   xTurn = true;
-  xWin = false;
-  oWin = false;
-  draw = false;
   turns = 0;
   $(".message").text("");
   $(".winbox").hide();
@@ -110,38 +87,38 @@ $(document).ready(function(){
     $(".square").on("click", function(){
       // AI EASY
       if(aiEasy){
-        if(!xWin && !oWin){
+        if(!winChecker("x") && !winChecker("o")){
           turns += 2;
           if(remaining.includes( $(this).attr("id") )){
             $(`#${remaining.splice(remaining.indexOf($(this).attr("id")), 1)[0]}`).addClass("x");
-            winChecker();
-            if(!xWin && !draw){
+            winbox();
+            if(!winChecker("x") && !drawCheck()){ // If x hasn't won
               setTimeout(function(){
                 $(`#${remaining.splice(Math.floor(Math.random()*remaining.length), 1)[0]}`).addClass("o");
-                winChecker();
-                }, 500)
-              }
-            };
+              winbox();
+                }, 500);
+              };  // <------- if x hasnt won o gets to go
+            };  // <-------- if spot still in array
           };
         }else{ // < ------- end of AiEasy
 
-        if(!xWin && ! oWin){
-          turns += 1;
-          if(xTurn){
-            if( !$(this).hasClass("x") && !$(this).hasClass("o") ){
-              $(this).addClass("x");
-              xTurn = false;;
-              winChecker();
-              };
-            }else{ //oTurn
-            if( !$(this).hasClass("x") && !$(this).hasClass("o") ){
-              $(this).addClass("o");
-              xTurn = true;
-              winChecker();
-              };
-            }// < ----------- else oTurn
-          }; // <-------- if no one has won
-        };
+          if(!winChecker("x") && !winChecker("o")){
+            turns += 1;
+            if(xTurn){
+              if( !$(this).hasClass("x") && !$(this).hasClass("o") ){
+                $(this).addClass("x");
+                xTurn = false;
+                winbox();
+                };
+              }else{ //oTurn
+              if( !$(this).hasClass("x") && !$(this).hasClass("o") ){
+                $(this).addClass("o");
+                xTurn = true;
+                winbox();
+                };
+              }// < ----------- else oTurn
+            }; // <-------- if no one has won
+          };
       }); // < --------- on click
 
     $(".reset").on("click", reset);
