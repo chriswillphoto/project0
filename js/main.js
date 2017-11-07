@@ -74,19 +74,26 @@ const reset = function(){
   $(".o").removeClass("o")
   xTurn = true;
   turns = 0;
-  $(".message").text("");
   $(".winbox").hide();
   sound.stop();
   clearInterval(intervalId);
   remaining = ["s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9"];
 };
 
+const scoreReset = function() {
+  $("#1score").text("0")
+  player1Score = 0
+  $("#2score").text("0")
+  player2Score = 0
+  turns = 0
+}
+
 
 
 
 $(document).ready(function(){
 
-    $(".container").on("click", ".square", function(){
+    $(".square").on("click", function(){
       // AI EASY
       if(gameMode === 2){
         if(!winChecker("x") && !winChecker("o")){
@@ -110,8 +117,10 @@ $(document).ready(function(){
               gameboard[gameboard.indexOf($(this).attr("id"))] = "x"
               winbox();
               if(!winChecker("x") && !drawCheck()) {
-              medium();
-              winbox();
+              setTimeout(function(){
+                medium();
+                winbox();
+                }, 500);
               }
             }
 
@@ -145,19 +154,22 @@ $(document).ready(function(){
         $(this).text("vs: AI - Easy");
         $(".button").css("background", "purple")
         $("#player2").text("Computer");
+        scoreReset();
         reset();
 
       }else if(gameMode === 2){
         gameMode = 3;
         $(this).text("vs: AI - Hard");
         $("#player2").text("Computer");
-        $(".button").css("background", "indigo")
+        $(".button").css("background", "indigo");
+        scoreReset();
         reset();
       }else{
         gameMode = 1;
         $(this).text("vs: Player");
         $("#player2").text("Player 2");
         $(".button").css("background", "skyblue")
+        scoreReset();
         reset();
       };
 
