@@ -11,12 +11,14 @@ let aiPlayer = "o"
 
 let sound = new Howl({
   src: ["audio/sandstorm.mp3"],
-  volume: 0.7
+  volume: 0.7,
+  preload: true
 });
 
 let fatality = new Howl({
   src: ["audio/fatality.mp3"],
-  volume: 1
+  volume: 1,
+  preload: true
 });
 
 
