@@ -74,6 +74,9 @@ const medium = function(){
   }else if( $("#s4").hasClass("x") && $("#s7").hasClass("x") && remaining.includes("s1") ) {
       return $(`#${remaining.splice(remaining.indexOf("s1"), 1)[0]}`).addClass("o")
 
+  }else if( $("#s2").hasClass("x") && $("#s5").hasClass("x") && remaining.includes("s8") ) {
+      return $(`#${remaining.splice(remaining.indexOf("s8"), 1)[0]}`).addClass("o")
+
   }else{
     return $(`#${remaining.splice(Math.floor(Math.random()*remaining.length), 1)[0]}`).addClass("o");
   }
