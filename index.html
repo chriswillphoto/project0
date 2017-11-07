@@ -5,15 +5,17 @@
     <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="/Users/christophernekich/assets/oldjquery.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.5/howler.core.min.js" charset="utf-8"></script>
+    <script src="js/win.js" charset="utf-8"></script>
     <script src="js/main.js" charset="utf-8"></script>
   </head>
   <body>
 
     <div class="container">
       <div class="playerbar">
-        <div class="vs">Player</div>
+        <div class="mode"><button class="button">vs: Player</button></div>
         <div class="p1">Player 1: <span id="1score">0</span></div>
-        <div class="p2">Player 2: <span id="2score">0</span></div>
+        <div class="p2"><span id="player2">Player 2</span>: <span id="2score">0</span></div>
       </div>
 
       <div class="row" id="row1">
@@ -31,9 +33,13 @@
         <div class="square" id="s8"></div>
         <div class="square" id="s9"></div>
       </div>
+    </div>
 
-      <div class="message"></div>
-      <button class="reset">Play Again?</button>
+    <div class="winbox">
+    <span class=message></span>
+    <button class="reset">Play Again?</button>
+
+
     </div>
 
 

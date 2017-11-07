@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+
 body {
   margin: 0;
   padding: 0;
+  font-family: "Open Sans", sans-serif;
 }
 
 .container {
@@ -14,11 +17,14 @@ body {
 .playerbar {
   height: 100px;
   background-color: pink;
+  border-radius: 1em;
+  color: white;
+  margin-bottom: 20px;
 }
 
 .playerbar div {
   display: inline-block;
-  margin: 0 50px;
+  margin: 0 20px;
   font-size: 20px;
   line-height: 100px;
 }
@@ -48,8 +54,9 @@ body {
 }
 
 .message {
-  margin: 10px auto 0 ;
+  margin: 10px auto 0;
   text-align: center;
+  font-weight: bold;
 }
 
 .x {
@@ -67,6 +74,74 @@ body {
 }
 
 .reset {
+  margin: 0 auto;
+  display: block;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  padding: 20px 30px;
+  font-size: 22px;
+}
+
+.reset:hover {
+  cursor: pointer;
+}
+
+.button {
+    position: relative;
+    background-color: skyblue;
+    border: none;
+    font-size: 20px;
+    color: #FFFFFF;
+    padding: 5px;
+    /*width: 140px;*/
+    /*margin: 0 30px;*/
+    text-align: center;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.button:focus {
+  outline: 0;
+}
+.button:after {
+    content: "";
+    background: #f1f1f1;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+}
+
+.button:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}
+
+.win {
+  opacity: 0.5;
+}
+
+.winbox {
+  position: absolute;
+  background-color: pink;
+  width: 1440px;
+  height: 780px;
+  top: 0;
+  opacity: 0.8;
   display: none;
-  margin: 0;
+  padding-top: 330px;
+  font-size: 64px;
+  text-align: center;
+  color: white;
+  box-sizing: border-box;
 }
