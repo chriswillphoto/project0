@@ -5,7 +5,9 @@ let xTurn = true;
 let turns = 0;
 let player1Score = 0;
 let player2Score = 0;
-let aiEasy = false;
+let gameMode = 1 // 1 = pvp, 2=aiEasy, 3=aiHard
+let huPlayer = "x"
+let aiPlayer = "o"
 
 let sound = new Howl({
   src: ["audio/sandstorm.mp3"],
@@ -36,7 +38,7 @@ const winbox = function (){
     $(".message").text("O Wins");
     player2Score += 1;
     $("#2score").text(player2Score);
-    if(aiEasy){
+    if(gameMode === 2){
       winner("COMPUTER")
     }else{
       winner("PLAYER 2")
@@ -84,9 +86,9 @@ const reset = function(){
 
 $(document).ready(function(){
 
-    $(".square").on("click", function(){
+    $(".container").on("click", ".square", function(){
       // AI EASY
-      if(aiEasy){
+      if(gameMode === 2){
         if(!winChecker("x") && !winChecker("o")){
           turns += 2;
           if(remaining.includes( $(this).attr("id") )){
@@ -100,6 +102,20 @@ $(document).ready(function(){
               };  // <------- if x hasnt won o gets to go
             };  // <-------- if spot still in array
           };
+        }else if (gameMode === 3) {
+          if(!winChecker("x") && !winChecker("o")){
+            turns += 2;
+            if(remaining.includes( $(this).attr("id") )) {
+              $(`#${remaining.splice(remaining.indexOf($(this).attr("id")), 1)[0]}`).addClass("x");
+              gameboard[gameboard.indexOf($(this).attr("id"))] = "x"
+              winbox();
+              if(!winChecker("x") && !drawCheck()) {
+              medium();
+              winbox();
+              }
+            }
+
+        }
         }else{ // < ------- end of AiEasy
 
           if(!winChecker("x") && !winChecker("o")){
@@ -124,16 +140,24 @@ $(document).ready(function(){
     $(".reset").on("click", reset);
 
     $(".button").on("click", function(){
-      if($(this).text() === "vs: Player"){
-        aiEasy = true;
+      if(gameMode === 1){
+        gameMode = 2;
         $(this).text("vs: AI - Easy");
+        $(".button").css("background", "purple")
         $("#player2").text("Computer");
         reset();
 
+      }else if(gameMode === 2){
+        gameMode = 3;
+        $(this).text("vs: AI - Hard");
+        $("#player2").text("Computer");
+        $(".button").css("background", "indigo")
+        reset();
       }else{
-        aiEasy = false;
+        gameMode = 1;
         $(this).text("vs: Player");
         $("#player2").text("Player 2");
+        $(".button").css("background", "skyblue")
         reset();
       };
 
