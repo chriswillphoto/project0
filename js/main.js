@@ -111,7 +111,7 @@ $(document).ready(function(){
               };  // <------- if x hasnt won o gets to go
             };  // <-------- if spot still in array
           };
-        }else if (gameMode === 3) {
+        }else if (gameMode === 3) { // ai Hard Mode
           if(!winChecker("x") && !winChecker("o")){
             turns += 2;
             if(remaining.includes( $(this).attr("id") )) {
