@@ -8,12 +8,12 @@ let player2Score = 0;
 let aiEasy = false;
 
 let sound = new Howl({
-  src: ["sandstorm.mp3"],
+  src: ["audio/sandstorm.mp3"],
   volume: 0.7
 });
 
 let fatality = new Howl({
-  src: ["fatality.mp3"],
+  src: ["audio/fatality.mp3"],
   volume: 1
 });
 
