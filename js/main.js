@@ -10,7 +10,7 @@ let huPlayer = "x"
 let aiPlayer = "o"
 
 let sound = new Howl({
-  src: ["audio/sandstorm2.mp3"],
+  src: ["audio/song.mp3"],
   volume: 0.7,
   preload: true,
   loop: true
