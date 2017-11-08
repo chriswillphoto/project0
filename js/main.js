@@ -10,9 +10,10 @@ let huPlayer = "x"
 let aiPlayer = "o"
 
 let sound = new Howl({
-  src: ["audio/sandstorm.mp3"],
+  src: ["audio/sandstorm2.mp3"],
   volume: 0.7,
-  preload: true
+  preload: true,
+  loop: true
 });
 
 let fatality = new Howl({

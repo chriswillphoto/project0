@@ -2,7 +2,7 @@ let intervalId;
 
 const winner = function(winPlayer){
 
-  sound.seek(166)
+
   sound.play()
   fatality.play()
   $(".winbox").show();
