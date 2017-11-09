@@ -126,9 +126,9 @@ $(document).ready(function(){
               hard();
               winbox();
               }, 500);
-            }
-          }
-        }
+            };
+          };
+        };
       }else{ // < ------- end of AiEasy
 
         if(!winChecker("x") && !winChecker("o")){
@@ -139,7 +139,7 @@ $(document).ready(function(){
               xTurn = false;
               winbox();
             };
-            activePlayer()
+            activePlayer();
           }else{ //oTurn
             if( !$(this).hasClass("x") && !$(this).hasClass("o") ){
               $(this).addClass("o");
@@ -147,7 +147,7 @@ $(document).ready(function(){
               winbox();
             };
             activePlayer();
-          } // < ----------- else oTurn
+          }; // < ----------- else oTurn
         }; // <-------- if no one has won
       };
     }); // < --------- on click
@@ -158,11 +158,11 @@ $(document).ready(function(){
       if(gameMode === 1){
         gameMode = 2;
         $(this).text("vs: AI - Easy");
-        $(".button").css("background", "purple")
+        $(".button").css("background", "purple");
         $("#player2").text("Computer");
         scoreReset();
         reset();
-        $(".active").removeClass("active")
+        $(".active").removeClass("active");
 
       }else if(gameMode === 2){
         gameMode = 3;
@@ -178,7 +178,7 @@ $(document).ready(function(){
         $(".button").css("background", "skyblue");
         scoreReset();
         reset();
-        $(".p1").addClass("active")
+        $(".p1").addClass("active");
       };
 
 
