@@ -162,6 +162,7 @@ $(document).ready(function(){
         $("#player2").text("Computer");
         scoreReset();
         reset();
+        $(".active").removeClass("active")
 
       }else if(gameMode === 2){
         gameMode = 3;
@@ -177,6 +178,7 @@ $(document).ready(function(){
         $(".button").css("background", "skyblue");
         scoreReset();
         reset();
+        $(".p1").addClass("active")
       };
 
 
