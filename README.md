@@ -1,6 +1,6 @@
 # Tic Tac Toe
 
-Tic Tac Toe for Pvp or single player mode vs a dumb or slightly less dumb ai player. Win and you get to listen to Darude - Sandstorm.
+Tic Tac Toe for PvP or single player mode vs a dumb or slightly less dumb ai player. Win and you get to listen to Darude - Sandstorm.
 
 ## Things this does not yet have
 
