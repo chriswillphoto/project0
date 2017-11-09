@@ -31,6 +31,11 @@ const drawCheck = function(){
   };
 };
 
+const activePlayer = function(){
+  $(".p1").toggleClass("active")
+  $(".p2").toggleClass("active")
+}
+
 const winbox = function (){
   if(winChecker("x")){
     player1Score += 1;
@@ -133,13 +138,15 @@ $(document).ready(function(){
               $(this).addClass("x");
               xTurn = false;
               winbox();
-              };
+            };
+            activePlayer()
           }else{ //oTurn
             if( !$(this).hasClass("x") && !$(this).hasClass("o") ){
               $(this).addClass("o");
               xTurn = true;
               winbox();
             };
+            activePlayer();
           } // < ----------- else oTurn
         }; // <-------- if no one has won
       };
