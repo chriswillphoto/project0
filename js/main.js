@@ -104,7 +104,7 @@ $(document).ready(function(){
             if(!winChecker("x") && !drawCheck()){ // If x hasn't won
               setTimeout(function(){
                 $(`#${remaining.splice(Math.floor(Math.random()*remaining.length), 1)[0]}`).addClass("o");
-              winbox();
+                winbox();
                 }, 500);
               };  // <------- if x hasnt won o gets to go
             };  // <-------- if spot still in array
