@@ -1,4 +1,4 @@
-#Tic Tac Toe
+# Tic Tac Toe
 
 Tic Tac Toe for pvp or challenge a dumb and a slightly less dumb ai player. Win and you get to listen to Darude - Sandstorm.
 
