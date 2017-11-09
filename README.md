@@ -12,6 +12,6 @@ Responsive design is not quite there.
 
 ## Built Using
 
-Howler.js - A library that helps with playing .
+Howler.js - A library that helps with playing sounds.
 
 jQuery
