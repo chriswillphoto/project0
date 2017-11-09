@@ -1,4 +1,4 @@
-const medium = function(){
+const hard = function(){     // hard coded case by case "ai" mostly setting up blocking moves otherwise. picks center if available first move otherwise if not blocking picks a random square from remaining.
   if( turns === 2 && !$("#s5").hasClass("x") ) {
     return $(`#${remaining.splice(remaining.indexOf("s5"), 1)[0]}`).addClass("o")
 
