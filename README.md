@@ -10,6 +10,9 @@ The ability for players to select whether they want to be X's or O's.
 
 Responsive design is not quite there.
 
+## Live Site
+[Can Be Played Here](https://chriswillphoto.github.io/project0/)
+
 ## Built Using
 
 Howler.js - A library that helps with playing sounds.
